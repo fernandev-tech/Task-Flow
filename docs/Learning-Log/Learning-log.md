@@ -621,13 +621,15 @@ tasks = [
 
         entrega
 
-
+```bash
 TaskList
+```
 
 Recebe:
 
+```
 tasks
-
+```
 e mostra na tela
 
 4. Mas como entregar?
@@ -638,15 +640,19 @@ Vamos voltar ao JavaScript puro.
 
 Imagina:
 
+```JavaScript
 function mostrarPessoa(nome){
     console.log(nome)
 }
+```
 
 Essa função não sabe quem é Fernando.
 
 Mas alguém pode enviar:
 
+```JavaScript
 mostrarPessoa("Fernando")
+```
 
 Agora ela conhece.
 
@@ -656,7 +662,9 @@ React faz a mesma coisa.
 
 Temos:
 
+```JavaScript
 <TaskList />
+```
 
 Neste momento:
 
@@ -664,13 +672,17 @@ O TaskList recebe nada.
 
 É como chamar:
 
+```JavaScript
 mostrarPessoa()
+```
 
 Sem argumento.
 
 Quando fazemos:
 
+```JavaScript
 <TaskList tasks={tasks}/>
+```
 
 Estamos fazendo:
 
@@ -678,18 +690,281 @@ Estamos fazendo:
 
 O lado esquerdo:
 
+```JavaScript
 tasks
-
+```
 é o nome que o filho vai receber.
 
 O lado direito:
 
+```JavaScript
 {tasks}
+```
 
 é a variável que existe no App.
 
 É quase como dizer:
 
+```JavaScript
 TaskList recebe uma caixa chamada tasks
 
 dentro dela coloca o valor da variável tasks
+```
+
+5. Mas repara numa coisa importante
+
+Quando fazemos:
+
+```JavaScript
+<TaskList tasks={tasks}/>
+```
+
+Hoje ele recebe:
+
+```JavaScript
+[]
+```
+
+Porque o estado está vazio.
+
+Não aparece nada.
+
+Mas depois:
+
+Quando o estado mudar:
+
+```JavaScript
+[
+ {
+  title:"Estudar React"
+ }
+]
+```
+
+O React automaticamente envia o novo valor para o TaskList.
+
+Por isso dizemos:
+
+Estado muda → React atualiza interface.
+
+6. E onde entra o useState?
+
+Ela acontece aqui:
+
+Imagina:
+
+O utilizador adiciona:
+
+```JavaScript
+const novaTarefa = {
+ title:"Estudar React"
+}
+```
+
+Precisamos dizer ao React:
+
+```
+"Ei, a lista mudou."
+```
+
+Então usamos:
+
+```JavaScript
+setTasks([...tasks, novaTarefa])
+```
+
+Antes:
+
+```JavaScript
+tasks = []
+```
+
+Depois:
+
+```JavaScript
+tasks = [
+ {
+  title:"Estudar React"
+ }
+]
+```
+
+O React percebe:
+
+"Ah, o estado mudou."
+
+Então ele renderiza novamente.
+
+Agora:
+
+```JavaScript
+<TaskList tasks={tasks}/>
+```
+
+recebe:
+
+```JavaScript
+[
+ {
+  title:"Estudar React"
+ }
+]
+```
+
+E finalmente consegue criar:
+
+```JavaScript
+<TaskCard />
+```
+
+Então o fluxo completo será:
+
+```bash
+Utilizador
+    |
+    |
+Preenche formulário
+    |
+    |
+TaskForm
+    |
+    |
+avisa App
+    |
+    |
+setTasks()
+    |
+    |
+tasks muda
+    |
+    |
+React atualiza
+    |
+    |
+TaskList recebe tasks
+    |
+    |
+map()
+    |
+    |
+TaskCard aparece
+```
+### Outros Exemplos
+
+Quando escrevemos:
+
+```JavaScript
+<TaskCard title="Estudar React" />
+```
+É como se estivéssemos a dizer ao React:
+
+"Cria um componente TaskCard e entrega-lhe esta informação: o título é 'Estudar React'."
+
+O TaskCard ainda não sabe nada. Ele apenas recebe o que o pai lhe envia.
+
+É muito parecido com uma função JavaScript.
+
+Em JavaScript fazes isto:
+
+```JavaScript
+function saudar(nome) {
+  console.log(`Olá ${nome}`)
+}
+
+saudar("Fernando")
+```
+
+O que aconteceu?
+
+A função recebeu um valor:
+
+```JavaScript
+nome = "Fernando"
+```
+
+No React acontece algo muito parecido.
+
+O pai escreve:
+
+```JavaScript
+<TaskCard title="Estudar React" />
+```
+
+E o componente recebe essa informação:
+
+```JavaScript
+function TaskCard(props) {
+  console.log(props)
+}
+```
+
+Nesse momento, props seria algo semelhante a:
+
+```JavaScript
+{
+  title: "Estudar React"
+}
+```
+
+Reparaste numa coisa?
+
+No JavaScript a função recebe parâmetros.
+
+**No React o componente também recebe um parâmetro. Esse parâmetro chama-se normalmente props.**
+
+É por isso que eu costumo dizer:
+
+**Um componente React é, no fundo, uma função que recebe props e devolve JSX.**
+
+O TaskList recebe a lista Assim:
+
+O App vai entregar a lista ao TaskList.
+
+Algo assim:
+
+```JavaScript
+<TaskList tasks={tasks} />
+```
+
+Mas eu não quero que copies isso ainda.
+
+Quero que entendas.
+
+Lê esta linha em português:
+
+```JavaScript
+<TaskList tasks={tasks} />
+```
+
+Como eu leria?
+
+**"Estou a criar um componente TaskList e estou a entregar-lhe uma prop chamada tasks, cujo valor é a variável tasks do App."**
+
+Repara que existem dois tasks, mas eles têm papéis diferentes.
+
+O da esquerda:
+
+```JavaScript
+tasks=
+```
+é o nome da prop.
+
+O da direita:
+
+```JavaScript
+{tasks}
+```
+
+é a variável que existe no App.
+
+É como escrever:
+
+```JavaScript
+const nome = "Fernando"
+```
+
+À esquerda tens o nome da variável.
+
+À direita tens o valor que lhe estás a atribuir.
+
+Aqui é parecido.

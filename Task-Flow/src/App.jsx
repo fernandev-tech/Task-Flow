@@ -13,10 +13,11 @@ function App() {
       <Header />
       <main>
         <TaskForm />
-        <TaskList />
+        <TaskList tasks={tasks} />
       </main>
     </>
   )
 }
 
 export default App
+

@@ -60,43 +60,7 @@ A pasta `docs/` contém toda a documentação técnica do projeto.
 | ARCHITECTURE.md | Arquitetura da aplicação |
 | DATA_PERSISTENCE.md | Persistência dos dados |
 | SPRINT_00.md | Documentação da Sprint 0 |
-| DECISIONS.md | Histórico das decisões técnicas |
 
----
-
-# 👥 Equipa
-
-## Tech Lead
-
-ChatGPT
-
-Responsável por:
-
-- Arquitetura
-- Planeamento
-- Revisão técnica
-- Mentoria
-
-## Frontend Developer
-
-Fernando B. Sebastião
-
-Responsável por:
-
-- Implementação
-- Testes
-- Pesquisa
-- Desenvolvimento da aplicação
-
----
-
-# 📌 Estado do Projeto
-
-🟢 Em desenvolvimento
-
-Sprint atual:
-
-Sprint 0 — Planeamento
 
 ---
 
