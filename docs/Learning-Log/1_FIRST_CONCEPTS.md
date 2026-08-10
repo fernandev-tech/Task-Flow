@@ -11,11 +11,7 @@
 3. O que é JSX
 4. O que é um Componente
 5. useState
-6. Aplicando useState na Task Flow
-7. useState e Hooks
-8. Por que importamos o useState?
-9. Por que usamos chaves `{}` no import?
-10. Comunicação entre componentes
+
 
 ---
 
