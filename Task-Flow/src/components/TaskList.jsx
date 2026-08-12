@@ -1,3 +1,4 @@
+import styles from './TaskList.module.css'
 import TaskCard from "./TaskCard"
 function TaskList({ tasks }) {
 
@@ -8,7 +9,7 @@ function TaskList({ tasks }) {
             {
                 tasks.length === 0
                     ? <p>Ainda sem tarefas</p>
-                    : <ul>
+                    : <ul className={styles.task_list}> 
                         {
                             tasks.map(task => (
                                 <TaskCard

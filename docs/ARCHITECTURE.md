@@ -184,3 +184,28 @@ A arquitetura permite adicionar:
 - Dark Mode.
 
 Sem necessidade de reestruturar completamente a aplicação.
+
+# Fluxo atualizado durante o desenvolvimento
+```graphics
+Usuário preenche formulário
+        ↓
+TaskForm
+        ↓
+cria newTask
+        ↓
+onAddTask(newTask)
+        ↓
+App
+        ↓
+addTask()
+        ↓
+setTasks(...)
+        ↓
+tasks muda
+        ↓
+React renderiza novamente
+        ↓
+TaskList recebe tasks
+        ↓
+TaskCard aparece
+```

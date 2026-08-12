@@ -1,22 +1,35 @@
-function TaskForm({ setTasks }) {
-    /*Aqui o objeto que foi enviado para essa propriedade é desestruturado. Então TaskForm tem a função setTasks dentro da prop setTasks.*/
+import styles from './TaskForm.module.css'
+
+function TaskForm({ onAddTask }) {
+
+    /*Aqui estamos recebendo uma prop onAddTask que foi passada pelo App ao form. E essa prop carrega a função addTask. Então essa prop aponta para a referÊncia dessa função.*/
+
     function handleSubmit(event) {
         event.preventDefault()
+        
         /*Em vez da página carregar após o form for enviado, essafunção vai impedir com que o navegador acrregue a página e permitir com que o React reaja*/
 
         const formData = new FormData(event.target) /*"Cria uma nova instância de FormData usando este formulário como fonte dos dados."*/
+
         const title = formData.get('title') /*"O objeto formData acessa o método get que pega o name que no form tem o valor title e guarda na variável title."*/
+
         const description = formData.get('description')
 
+        const newTask = {
+            id: Date.now(),
+            title: title,
+            description: description,
+            favorite: false,
+            completed: false
+        }
+
+        onAddTask(newTask) /*Como o onAddTask reerencia a função addTask, chammos essa função e passamos o objeto newTask como parâmetro. Ou seja estamos passando o newTask para App.*/
+        
     }
-
-
-
-
     return (
 
 
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className={styles.form_card}>
             {/*O onSubmit recebe uma função que será executada quando o formulário for submetido.*/}
             <label htmlFor="title">Título</label>
             <input name="title" id="title" type="text" placeholder="Digite o título da tarefa" />

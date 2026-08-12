@@ -1,0 +1,57 @@
+.form_card {
+    display: flex;
+    justify-content: center;
+    /*text-align: stretch ocupa toda a largura disponível*/
+    align-items: stretch;
+    flex-direction: column;
+    gap: 20px;
+    background-color: #FFFFFF;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+label {
+    font-size: 14px;
+    /* o 500 aqui é meio termo entre normal e bold, destaca sem gritar*/
+    font-weight: 500;
+    color: #4B5563;
+}
+
+input,
+textarea {
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #D1D5DB;
+    outline: none;
+}
+
+/*Ao remover o outline, deve-se deixar sempre um feedback personalizado*/
+input:focus {
+    border-color: #2563EB;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+textarea:focus {
+    border-color: #2563EB;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+button {
+    /*Centraliza o botão ao meio*/
+    align-self: center;
+    font-weight: bold;
+    background-color: #2563EB;
+    color: white;
+    border-radius: 10px;
+    padding: 10px;
+    border: 1px solid #D1D5DB;
+    width: 50%;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+button:hover {
+    background-color: #1D4ED8;
+}

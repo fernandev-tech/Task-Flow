@@ -1,0 +1,78 @@
+.task_card {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background-color: #FFFFFF;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.task_header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+.task_header button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 36px;
+    height: 36px;
+
+    padding: 6px;
+    border: none;
+    background: transparent;
+    color: #6B7280;
+
+    cursor: pointer;
+    border-radius: 50%;
+    transition: 0.2s;
+}
+
+.task_header button:hover {
+    background-color: #F3F4F6;
+    color: #F59E0B;
+}
+
+.task_header svg {
+    width: 22px;
+    height: 22px;
+}
+
+.task_actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 8px;
+}
+
+.done_btn,
+.delete_btn {
+    flex: 1;
+    padding: 10px 16px;
+    border: none;
+    border-radius: 8px;
+    color: #FFFFFF;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.done_btn {
+    background-color: #16A34A;
+}
+
+.done_btn:hover {
+    background-color: #15803D;
+}
+
+.delete_btn {
+    background-color: #DC2626;
+}
+
+.delete_btn:hover {
+    background-color: #B91C1C;
+}
