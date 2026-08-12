@@ -1,5 +1,5 @@
 import styles from './TaskCard.module.css'
-function TaskCard({ task }) {
+function TaskCard({ task, onToggleFavorite, onToggleChecked }) {
 
     /*task torna-se uma propriedade de um objeto desestruturado que guarda um objeto que representa uma tarefa. Nesse objeto contém os dados de uma tarefa individual.*/
     /*Quando fizermos task.title ou task.description queremos acessar propriedades que existem dentro do objeto task. Por isso podemos imprimir os dados de uma tarefa*/
@@ -9,12 +9,24 @@ function TaskCard({ task }) {
             <li className={styles.task_card}>
 
                 <div className={styles.task_header}>
+                    <input
+                        type="checkbox"
+                        checked={task.completed}
+                        onChange={() => onToggleChecked(task.id)} />
+
+                    {/*checked={task.completed: O estado marcado/desmarcado desta checkbox deve ser determinado pelo valor de task.completed."*/}
+
                     <h3>{task.title}</h3>
-                    <button type="button" aria-label="Favoritar tarefa">
+                    <button
+                        type="button"
+                        aria-label="Favoritar tarefa"
+                        onClick={() => onToggleFavorite(task.id)}
+                        className={task.favorite ? styles.favorite : ''}
+                    >
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             viewBox="0 0 24 24"
-                            fill="none"
+                            fill={task.favorite ? "currentColor" : "none"} /*Permitir que a cor do svg seja a mesma com a do button quando mudar para true assim há preenchimento interior do ícone*/
                             stroke="currentColor"
                             strokeWidth="2"
                         >
@@ -26,7 +38,7 @@ function TaskCard({ task }) {
                 <p>{task.description}</p>
 
                 <div className={styles.task_actions}>
-                    <button type="button" className={styles.done_btn}>Concluir</button>
+                    <button type="button" className={styles.edit_btn} >Eliminar</button>
                     <button type="button" className={styles.delete_btn}>Eliminar</button>
                 </div>
             </li>

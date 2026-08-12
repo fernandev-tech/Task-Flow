@@ -24,6 +24,47 @@ function App() {
 A função recebe: newTask
 
 porque essa será a tarefa que acabou de ser criada pelo formulário.*/
+  function toggleFavorite(taskId) {
+
+    /*→ percorremos todas as tarefas para construir uma nova lista.*/
+    const updatedTasks = tasks.map(task => {
+
+      if (taskId === task.id) {
+        /*→ verificamos se a tarefa atual é justamente a tarefa clicada.*/
+        return (
+          /*→ criamos uma nova versão daquela tarefa, preservando os outros dados e alterando favorite.*/
+          {
+            ...task,
+            favorite: !task.favorite
+          }
+        )
+      } else {
+        return task
+      }
+    })
+
+    setTasks(updatedTasks)
+    /*Essa funçao será responsável por favoritar e desfavoritar uma task. Ela será passada para TaskCard. Porque quando o user favorita  ou desfavorita, é mudar o estado de uma task então quem controla o estado é o task quem modifica é o setTask ou seja o App.*/
+  }
+
+  function toggleChecked(taskId) {
+    
+    const updatedTasks = tasks.map(task => {
+
+      if (taskId === task.id) {
+        return (
+          {
+            ...task,
+            completed: !task.completed
+          }
+        )
+      } else {
+        return task
+      }
+    })
+
+    setTasks(updatedTasks)
+}
   return (
     <>
       <div className="container">
@@ -34,9 +75,15 @@ porque essa será a tarefa que acabou de ser criada pelo formulário.*/
 
           {/*Aqui estou a passar uma função como prop. Porque o TaskForm precisa de uma maneira de dizer ao App: "Terminei de criar uma tarefa. Aqui está ela."*/}
 
-          <TaskList tasks={tasks} />
+          <TaskList
+            tasks={tasks}
+            onToggleFavorite={toggleFavorite}
+            onToggleChecked={toggleChecked}
+          />
 
           {/*A variável de estado (que tem a lista atual das tarefas) é enviado como valor de uma prop que está sendo enviada para o componente TaskList*/}
+
+          {/*Passamos a função toggleFavorite como valor para a prop onToggleFavorite porque o TaskList é quem renderiza os TaskCard. Então o TaskList precisa receber a função para poder entregá-la ao TaskCard.*/}
         </main>
       </div>
     </>

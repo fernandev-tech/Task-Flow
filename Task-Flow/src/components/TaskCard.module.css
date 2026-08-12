@@ -3,7 +3,7 @@
     flex-direction: column;
     gap: 20px;
     background-color: #FFFFFF;
-    padding: 30px;
+    padding: 24px;
     border-radius: 10px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
@@ -20,6 +20,7 @@
     align-items: center;
     justify-content: center;
 
+    /*O ícone fica numa área circular então esse tamanho é cosistente com o tamanho do ícone*/
     width: 36px;
     height: 36px;
 
@@ -38,6 +39,11 @@
     color: #F59E0B;
 }
 
+.task_header .favorite {
+    color: #F59E0B;
+
+}
+
 .task_header svg {
     width: 22px;
     height: 22px;
@@ -49,8 +55,9 @@
     margin-top: 8px;
 }
 
-.done_btn,
+.edit_btn,
 .delete_btn {
+    /*Usei para ocuparem o mesmo espaço disponível*/
     flex: 1;
     padding: 10px 16px;
     border: none;
@@ -61,13 +68,14 @@
     transition: 0.2s;
 }
 
-.done_btn {
+.edit_btn {
     background-color: #16A34A;
 }
 
-.done_btn:hover {
+.edit_btn:hover {
     background-color: #15803D;
 }
+
 
 .delete_btn {
     background-color: #DC2626;
