@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Header from './components/Header'
 import TaskForm from './components/TaskForm'
 import TaskList from './components/TaskList'
@@ -7,10 +7,23 @@ import './App.css'
 function App() {
   /*O useState guarda as tarefas temporariamente na memória da aplicação. Assim que a página for carregada, o estado da aplicação volta no zero.*/
 
-  const [tasks, setTasks] = useState([])
+  const [tasks, setTasks] = useState(() => {
+    const savedTasks = localStorage.getItem("tasks")
+    if (savedTasks) {
+      const parsedTasks = JSON.parse(savedTasks)
+      return parsedTasks
+    }else{
+      return []
+    }
+  })
 
   /*O React cria uma variavel de estado (lista atual das tarefas) E uma função que altera essa lista (quando lista for modificada)*/
   /* Quando o form for preenchido, os dados serão enviados no tasks (estado)*/
+
+  /*Gravar dados*/
+  useEffect(() => {
+    localStorage.setItem("tasks", JSON.stringify(tasks)) /*"Sempre que tasks mudar, transforma o array de tarefas em JSON e guarda-o no localStorage."*/
+  }, [tasks])
 
   function addTask(newTask) {
     setTasks([...tasks, newTask]) /*Esta linha significa: "Pega nas tarefas que já tenho e cria uma nova lista acrescentando esta nova tarefa."*/
@@ -42,7 +55,6 @@ porque essa será a tarefa que acabou de ser criada pelo formulário.*/
         return task
       }
     })
-
     setTasks(updatedTasks)
     /*Essa funçao será responsável por favoritar e desfavoritar uma task. Ela será passada para TaskCard. Porque quando o user favorita  ou desfavorita, é mudar o estado de uma task então quem controla o estado é o task quem modifica é o setTask ou seja o App.*/
   }

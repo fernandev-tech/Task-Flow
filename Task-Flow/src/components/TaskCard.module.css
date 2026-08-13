@@ -15,6 +15,16 @@
 
 }
 
+.done_task {
+    color: #6b7280;
+    text-decoration: line-through;
+    opacity: 0.7;
+}
+
+.done_description {
+    color: #9CA3AF;
+}
+
 .task_header button {
     display: flex;
     align-items: center;

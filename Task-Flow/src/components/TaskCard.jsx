@@ -16,7 +16,7 @@ function TaskCard({ task, onToggleFavorite, onToggleChecked, onDeleteTask }) {
 
                     {/*checked={task.completed: O estado marcado/desmarcado desta checkbox deve ser determinado pelo valor de task.completed."*/}
 
-                    <h3>{task.title}</h3>
+                    <h3 className={task.completed? styles.done_task : ''}>{task.title}</h3>
                     <button
                         type="button"
                         aria-label="Favoritar tarefa"
@@ -35,7 +35,7 @@ function TaskCard({ task, onToggleFavorite, onToggleChecked, onDeleteTask }) {
                     </button>
                 </div>
 
-                <p>{task.description}</p>
+                <p className={task.completed? styles.done_description : ''}>{task.description}</p>
 
                 <div className={styles.task_actions}>
                     <button type="button" className={styles.edit_btn} >Desabled</button>
