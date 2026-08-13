@@ -5,3 +5,9 @@
     gap: 16px;
     margin-top: 30px;
 }
+.no_tasks{
+    text-align: center;
+    margin-top: 30px;
+    font-weight: bold;
+    font-size: 18px;
+}

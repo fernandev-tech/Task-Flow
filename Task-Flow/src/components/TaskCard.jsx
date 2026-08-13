@@ -16,7 +16,7 @@ function TaskCard({ task, onToggleFavorite, onToggleChecked, onDeleteTask }) {
 
                     {/*checked={task.completed: O estado marcado/desmarcado desta checkbox deve ser determinado pelo valor de task.completed."*/}
 
-                    <h3 className={task.completed? styles.done_task : ''}>{task.title}</h3>
+                    <h3 className={task.completed ? styles.done_task : ''}>{task.title}</h3>
                     <button
                         type="button"
                         aria-label="Favoritar tarefa"
@@ -35,14 +35,32 @@ function TaskCard({ task, onToggleFavorite, onToggleChecked, onDeleteTask }) {
                     </button>
                 </div>
 
-                <p className={task.completed? styles.done_description : ''}>{task.description}</p>
+                <p className={task.completed ? styles.done_description : ''}>{task.description}</p>
 
                 <div className={styles.task_actions}>
-                    <button type="button" className={styles.edit_btn} >Desabled</button>
-                    <button 
-                    type="button" 
-                    className={styles.delete_btn}
-                    onClick={() => onDeleteTask(task.id)}>Eliminar</button>
+
+                    {/*Editar*/}
+                    <button
+                        type="button"
+                        className={styles.edit_btn}>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M17 3a2.85 2.85 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z" />
+                        </svg>
+                        Editar</button>
+
+                    {/*Apagar*/}
+                    <button
+                        type="button"
+                        className={styles.delete_btn}
+                        onClick={() => onDeleteTask(task.id)}>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M3 6h18" />
+                            <path d="M19 6v14c0 1-1 2-2 2H7c-0.5 0-1.5-1-2-2V6" />
+                            <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2" />
+                        </svg>
+                        Eliminar</button>
                 </div>
             </li>
 

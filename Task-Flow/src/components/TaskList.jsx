@@ -9,7 +9,7 @@ function TaskList({ tasks, onToggleFavorite, onToggleChecked, onDeleteTask }) {
         <>
             {
                 tasks.length === 0
-                    ? <p>Ainda sem tarefas</p>
+                    ? <p className={styles.no_tasks}>Ainda sem tarefas</p>
                     : <ul className={styles.task_list}>
                         {
                             tasks.map(task => (

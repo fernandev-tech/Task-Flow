@@ -80,10 +80,13 @@
 
 .edit_btn {
     background-color: #16A34A;
+    opacity: 0.7;
 }
 
 .edit_btn:hover {
-    background-color: #15803D;
+    /* background-color: #15803D;*/
+    background-color: #16A34A;
+
 }
 
 
