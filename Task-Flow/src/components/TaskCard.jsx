@@ -1,5 +1,5 @@
 import styles from './TaskCard.module.css'
-function TaskCard({ task, onToggleFavorite, onToggleChecked }) {
+function TaskCard({ task, onToggleFavorite, onToggleChecked, onDeleteTask }) {
 
     /*task torna-se uma propriedade de um objeto desestruturado que guarda um objeto que representa uma tarefa. Nesse objeto contém os dados de uma tarefa individual.*/
     /*Quando fizermos task.title ou task.description queremos acessar propriedades que existem dentro do objeto task. Por isso podemos imprimir os dados de uma tarefa*/
@@ -38,8 +38,11 @@ function TaskCard({ task, onToggleFavorite, onToggleChecked }) {
                 <p>{task.description}</p>
 
                 <div className={styles.task_actions}>
-                    <button type="button" className={styles.edit_btn} >Eliminar</button>
-                    <button type="button" className={styles.delete_btn}>Eliminar</button>
+                    <button type="button" className={styles.edit_btn} >Desabled</button>
+                    <button 
+                    type="button" 
+                    className={styles.delete_btn}
+                    onClick={() => onDeleteTask(task.id)}>Eliminar</button>
                 </div>
             </li>
 

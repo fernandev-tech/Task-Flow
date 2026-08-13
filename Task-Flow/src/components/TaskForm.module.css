@@ -26,6 +26,9 @@ textarea {
     border: 1px solid #D1D5DB;
     outline: none;
 }
+textarea{
+    resize: none;
+}
 
 /*Ao remover o outline, deve-se deixar sempre um feedback personalizado*/
 input:focus {

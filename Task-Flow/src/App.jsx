@@ -48,7 +48,7 @@ porque essa será a tarefa que acabou de ser criada pelo formulário.*/
   }
 
   function toggleChecked(taskId) {
-    
+
     const updatedTasks = tasks.map(task => {
 
       if (taskId === task.id) {
@@ -64,7 +64,18 @@ porque essa será a tarefa que acabou de ser criada pelo formulário.*/
     })
 
     setTasks(updatedTasks)
-}
+  }
+
+  function deleteTask(taskId) {
+    /*filter() percorre um array e cria um novo array contendo apenas os elementos que passam numa condição.Nesse caso quando o filter percorrer o array, o elemento que tiver id Igual ao id que a função recebeu, não entra na nova lista. por exemplo taskId = 2, 2 task.id = 2, ele faz: 2 !== 2 = false. Então essa tarefa fica de fora não entra no novo array.*/
+    const updatedTasks = tasks.filter(task => {
+
+      return taskId !== task.id
+
+    })
+
+    setTasks(updatedTasks)
+  }
   return (
     <>
       <div className="container">
@@ -79,6 +90,7 @@ porque essa será a tarefa que acabou de ser criada pelo formulário.*/
             tasks={tasks}
             onToggleFavorite={toggleFavorite}
             onToggleChecked={toggleChecked}
+            onDeleteTask={deleteTask}
           />
 
           {/*A variável de estado (que tem a lista atual das tarefas) é enviado como valor de uma prop que está sendo enviada para o componente TaskList*/}
