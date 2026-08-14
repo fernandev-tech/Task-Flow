@@ -6,8 +6,8 @@ function TaskForm({ onAddTask }) {
 
     function handleSubmit(event) {
         event.preventDefault()
-        
-        /*Em vez da página carregar após o form for enviado, essafunção vai impedir com que o navegador acrregue a página e permitir com que o React reaja*/
+
+        /*Em vez da página carregar após o form for enviado, essa função vai impedir com que o navegador acrregue a página e permitir com que o React reaja*/
 
         const formData = new FormData(event.target) /*"Cria uma nova instância de FormData usando este formulário como fonte dos dados."*/
 
@@ -24,7 +24,8 @@ function TaskForm({ onAddTask }) {
         }
 
         onAddTask(newTask) /*Como o onAddTask reerencia a função addTask, chammos essa função e passamos o objeto newTask como parâmetro. Ou seja estamos passando o newTask para App.*/
-        
+
+        event.target.reset() /*Reset do formulário*/
     }
     return (
 

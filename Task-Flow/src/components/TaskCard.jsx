@@ -1,5 +1,11 @@
 import styles from './TaskCard.module.css'
-function TaskCard({ task, onToggleFavorite, onToggleChecked, onDeleteTask }) {
+function TaskCard({
+    task,
+    onToggleFavorite,
+    onToggleChecked,
+    onEditTask,
+    onDeleteTask
+}) {
 
     /*task torna-se uma propriedade de um objeto desestruturado que guarda um objeto que representa uma tarefa. Nesse objeto contém os dados de uma tarefa individual.*/
     /*Quando fizermos task.title ou task.description queremos acessar propriedades que existem dentro do objeto task. Por isso podemos imprimir os dados de uma tarefa*/
@@ -42,7 +48,8 @@ function TaskCard({ task, onToggleFavorite, onToggleChecked, onDeleteTask }) {
                     {/*Editar*/}
                     <button
                         type="button"
-                        className={styles.edit_btn}>
+                        className={styles.edit_btn}
+                        onClick={() => onEditTask(task.id)}>
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                             stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M17 3a2.85 2.85 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z" />

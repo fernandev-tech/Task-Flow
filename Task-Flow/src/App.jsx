@@ -12,7 +12,7 @@ function App() {
     if (savedTasks) {
       const parsedTasks = JSON.parse(savedTasks)
       return parsedTasks
-    }else{
+    } else {
       return []
     }
   })
@@ -78,6 +78,10 @@ porque essa será a tarefa que acabou de ser criada pelo formulário.*/
     setTasks(updatedTasks)
   }
 
+  function edittTask(taskId) {
+
+  }
+
   function deleteTask(taskId) {
     /*filter() percorre um array e cria um novo array contendo apenas os elementos que passam numa condição.Nesse caso quando o filter percorrer o array, o elemento que tiver id Igual ao id que a função recebeu, não entra na nova lista. por exemplo taskId = 2, 2 task.id = 2, ele faz: 2 !== 2 = false. Então essa tarefa fica de fora não entra no novo array.*/
     const updatedTasks = tasks.filter(task => {
@@ -102,6 +106,7 @@ porque essa será a tarefa que acabou de ser criada pelo formulário.*/
             tasks={tasks}
             onToggleFavorite={toggleFavorite}
             onToggleChecked={toggleChecked}
+            onEditTask={edittTask}
             onDeleteTask={deleteTask}
           />
 
