@@ -25,6 +25,9 @@ function App() {
     localStorage.setItem("tasks", JSON.stringify(tasks)) /*"Sempre que tasks mudar, transforma o array de tarefas em JSON e guarda-o no localStorage."*/
   }, [tasks])
 
+  const [editingTaskId, setEditingTaskId] = useState(null) /*o null representa a ausência de valor. Quer dizer que o estado começa com um valor nulo*/
+
+  /*Adicionar nova tarefa*/
   function addTask(newTask) {
     setTasks([...tasks, newTask]) /*Esta linha significa: "Pega nas tarefas que já tenho e cria uma nova lista acrescentando esta nova tarefa."*/
 
@@ -37,6 +40,8 @@ function App() {
 A função recebe: newTask
 
 porque essa será a tarefa que acabou de ser criada pelo formulário.*/
+
+  /*Favoritar*/
   function toggleFavorite(taskId) {
 
     /*→ percorremos todas as tarefas para construir uma nova lista.*/
@@ -59,6 +64,7 @@ porque essa será a tarefa que acabou de ser criada pelo formulário.*/
     /*Essa funçao será responsável por favoritar e desfavoritar uma task. Ela será passada para TaskCard. Porque quando o user favorita  ou desfavorita, é mudar o estado de uma task então quem controla o estado é o task quem modifica é o setTask ou seja o App.*/
   }
 
+  /*Concluir Tarefa*/
   function toggleChecked(taskId) {
 
     const updatedTasks = tasks.map(task => {
@@ -78,10 +84,47 @@ porque essa será a tarefa que acabou de ser criada pelo formulário.*/
     setTasks(updatedTasks)
   }
 
-  function edittTask(taskId) {
+  /*Editar tarefa*/
+  function editTask(taskId) {
+
+    setEditingTaskId(taskId)
 
   }
 
+  const editingTask = tasks.find(task => task.id === editingTaskId)
+
+
+
+  function saveEditingTask(taskId, newTitle, newDescription) {
+
+    const updatedTasks = tasks.map(task => {
+      if (taskId === task.id) {
+        return (
+          {
+            ...task,
+            title: newTitle,
+            description: newDescription
+
+          }
+        )
+
+      } else {
+        return task
+      }
+
+    })
+
+    setTasks(updatedTasks)
+    setEditingTaskId(null) /*Após salvar a tarefa, o estado de edição volta para null.*/
+
+  }
+  /*Cancelar Tarefa*/
+  function cancelEditingTask() {
+    setEditingTaskId(null)
+  }
+
+
+  /*Apagar tarefa*/
   function deleteTask(taskId) {
     /*filter() percorre um array e cria um novo array contendo apenas os elementos que passam numa condição.Nesse caso quando o filter percorrer o array, o elemento que tiver id Igual ao id que a função recebeu, não entra na nova lista. por exemplo taskId = 2, 2 task.id = 2, ele faz: 2 !== 2 = false. Então essa tarefa fica de fora não entra no novo array.*/
     const updatedTasks = tasks.filter(task => {
@@ -92,13 +135,18 @@ porque essa será a tarefa que acabou de ser criada pelo formulário.*/
 
     setTasks(updatedTasks)
   }
+
   return (
     <>
       <div className="container">
         <Header />
         <main>
 
-          <TaskForm onAddTask={addTask} />
+          <TaskForm
+            onAddTask={addTask}
+            editingTask={editingTask}
+            saveEditingTask={saveEditingTask} 
+            cancelEditingTask={cancelEditingTask}/>
 
           {/*Aqui estou a passar uma função como prop. Porque o TaskForm precisa de uma maneira de dizer ao App: "Terminei de criar uma tarefa. Aqui está ela."*/}
 
@@ -106,7 +154,7 @@ porque essa será a tarefa que acabou de ser criada pelo formulário.*/
             tasks={tasks}
             onToggleFavorite={toggleFavorite}
             onToggleChecked={toggleChecked}
-            onEditTask={edittTask}
+            onEditTask={editTask}
             onDeleteTask={deleteTask}
           />
 

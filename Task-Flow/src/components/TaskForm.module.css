@@ -43,7 +43,7 @@ textarea:focus {
 
 button {
     /*Centraliza o botão ao meio*/
-    align-self: center;
+   /* align-self: center;*/
     font-weight: bold;
     background-color: #2563EB;
     color: white;
@@ -55,6 +55,25 @@ button {
     transition: 0.2s;
 }
 
+
 button:hover {
     background-color: #1D4ED8;
+}
+.buttonContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 8px;
+}
+.save_btn{
+    background-color: #16A34A;
+}
+.save_btn:hover{
+    background-color: #15803D;
+}
+.cancel_btn{
+background-color: #6B7280;
+}
+.cancel_btn:hover{
+    background-color: #4B5563;
 }
