@@ -27,9 +27,18 @@ function App() {
 
   const [editingTaskId, setEditingTaskId] = useState(null) /*o null representa a ausência de valor. Quer dizer que o estado começa com um valor nulo*/
 
+  /*Estado do feedback ao adicionar tarefa*/
+  const [addFeedback, setAddFeedBack] = useState("")
+
   /*Adicionar nova tarefa*/
   function addTask(newTask) {
     setTasks([...tasks, newTask]) /*Esta linha significa: "Pega nas tarefas que já tenho e cria uma nova lista acrescentando esta nova tarefa."*/
+
+    setAddFeedBack("Tarefa adicionada com sucesso!")
+
+    setTimeout(() => {
+      setAddFeedBack("")
+    }, 3000)
 
   }
   /* Por que crei esta função? Porque o App é quem possui o estado tasks. 
@@ -145,8 +154,10 @@ porque essa será a tarefa que acabou de ser criada pelo formulário.*/
           <TaskForm
             onAddTask={addTask}
             editingTask={editingTask}
-            saveEditingTask={saveEditingTask} 
-            cancelEditingTask={cancelEditingTask}/>
+            saveEditingTask={saveEditingTask}
+            cancelEditingTask={cancelEditingTask} />
+
+          <p>{addFeedback}</p>
 
           {/*Aqui estou a passar uma função como prop. Porque o TaskForm precisa de uma maneira de dizer ao App: "Terminei de criar uma tarefa. Aqui está ela."*/}
 

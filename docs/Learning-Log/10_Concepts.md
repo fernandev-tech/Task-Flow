@@ -618,3 +618,9 @@ pegar descrição da tarefa
         ↓
 editingDescription
 ```
+
+1. Criei componente (TaskIcon) para Ícones SVGs
+2. Organizei cada elemente usando componentes de ICon
+3. Usei renderização para para apresentar diferentes icones.
+2. Adicionei ícones nos botões cancelar, adicionar e salvar.
+
