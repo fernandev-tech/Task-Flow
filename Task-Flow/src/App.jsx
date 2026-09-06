@@ -3,6 +3,7 @@ import Header from './components/Header'
 import TaskForm from './components/TaskForm'
 import TaskList from './components/TaskList'
 import './App.css'
+import styles from './components/Feedback.module.css'
 
 function App() {
   /*O useState guarda as tarefas temporariamente na memória da aplicação. Assim que a página for carregada, o estado da aplicação volta no zero.*/
@@ -28,17 +29,24 @@ function App() {
   const [editingTaskId, setEditingTaskId] = useState(null) /*o null representa a ausência de valor. Quer dizer que o estado começa com um valor nulo*/
 
   /*Estado do feedback ao adicionar tarefa*/
-  const [addFeedback, setAddFeedBack] = useState("")
+  const [feedback, setFeedback] = useState(null)
+
+  function showFeedback(type, message, target) {
+    setFeedback({
+      type: type,
+      message: message,
+      target: target
+
+    })
+    setTimeout(() => {
+      setFeedback(null)
+    }, 3000)
+  }
 
   /*Adicionar nova tarefa*/
   function addTask(newTask) {
     setTasks([...tasks, newTask]) /*Esta linha significa: "Pega nas tarefas que já tenho e cria uma nova lista acrescentando esta nova tarefa."*/
-
-    setAddFeedBack("Tarefa adicionada com sucesso!")
-
-    setTimeout(() => {
-      setAddFeedBack("")
-    }, 3000)
+    showFeedback("success", "Tarefa adicionada!", "form")
 
   }
   /* Por que crei esta função? Porque o App é quem possui o estado tasks. 
@@ -70,8 +78,30 @@ porque essa será a tarefa que acabou de ser criada pelo formulário.*/
       }
     })
     setTasks(updatedTasks)
+
+    const updatedTask = updatedTasks.find(task => taskId === task.id)
     /*Essa funçao será responsável por favoritar e desfavoritar uma task. Ela será passada para TaskCard. Porque quando o user favorita  ou desfavorita, é mudar o estado de uma task então quem controla o estado é o task quem modifica é o setTask ou seja o App.*/
+    if (updatedTask.favorite) {
+      setFeedback({
+        type: "success",
+        message: "Tarefa favoritada!",
+        target: "taskCard",
+        taskId: taskId
+      })
+
+    } else {
+      setFeedback({
+        type: "success",
+        message: "Removido dos favoritos!!",
+        target: "taskCard",
+        taskId: taskId
+      })
+    }
+    setTimeout(() => {
+      setFeedback(null)
+    }, 3000)
   }
+
 
   /*Concluir Tarefa*/
   function toggleChecked(taskId) {
@@ -91,6 +121,27 @@ porque essa será a tarefa que acabou de ser criada pelo formulário.*/
     })
 
     setTasks(updatedTasks)
+
+    const updatedTask = updatedTasks.find(task => taskId === task.id)
+
+    if (updatedTask.completed) {
+      setFeedback({
+        type: "success",
+        message: "Tarefa concluída!",
+        target: "taskCard",
+        taskId
+      })
+    } else {
+      setFeedback({
+        type: "success",
+        message: "Tarefa pendente!!",
+        target: "taskCard",
+        taskId
+      })
+    }
+    setTimeout(() => {
+      setFeedback(null)
+    }, 3000)
   }
 
   /*Editar tarefa*/
@@ -125,6 +176,7 @@ porque essa será a tarefa que acabou de ser criada pelo formulário.*/
 
     setTasks(updatedTasks)
     setEditingTaskId(null) /*Após salvar a tarefa, o estado de edição volta para null.*/
+    showFeedback("sucess", "Tarefa salvada com sucesso!", "form")
 
   }
   /*Cancelar Tarefa*/
@@ -143,7 +195,10 @@ porque essa será a tarefa que acabou de ser criada pelo formulário.*/
     })
 
     setTasks(updatedTasks)
+    showFeedback("success", "Tarefa Eliminada!", "taskList")
   }
+
+
 
   return (
     <>
@@ -156,13 +211,18 @@ porque essa será a tarefa que acabou de ser criada pelo formulário.*/
             editingTask={editingTask}
             saveEditingTask={saveEditingTask}
             cancelEditingTask={cancelEditingTask} />
-
-          <p>{addFeedback}</p>
+          {feedback && feedback.target === "form" && (
+            <p className={`${styles.feedback} ${styles[feedback.type]}`}>
+              {feedback.message}
+            </p>
+          )}
+          {/*Existe feedback E ele não possui taskId? Então mostra no formulário.*/}
 
           {/*Aqui estou a passar uma função como prop. Porque o TaskForm precisa de uma maneira de dizer ao App: "Terminei de criar uma tarefa. Aqui está ela."*/}
 
           <TaskList
             tasks={tasks}
+            feedback={feedback}
             onToggleFavorite={toggleFavorite}
             onToggleChecked={toggleChecked}
             onEditTask={editTask}
@@ -173,7 +233,7 @@ porque essa será a tarefa que acabou de ser criada pelo formulário.*/
 
           {/*Passamos a função toggleFavorite como valor para a prop onToggleFavorite porque o TaskList é quem renderiza os TaskCard. Então o TaskList precisa receber a função para poder entregá-la ao TaskCard.*/}
         </main>
-      </div>
+      </div >
     </>
   )
 

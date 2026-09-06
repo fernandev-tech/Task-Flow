@@ -1,0 +1,42 @@
+.feedback {
+    /*text-align: center;
+
+    margin: 16px auto 0;
+    padding: 12px 18px;
+
+    max-width: 500px;
+
+    border-radius: 10px;
+
+    font-size: 15px;
+    font-weight: 500;
+
+    border: 1px solid transparent;
+
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);*/
+    text-align: center;
+    margin: 16px auto 0;
+    padding: 12px 16px;
+    max-width: 500px;
+
+    background-color: #F0FDF4;
+    color: #15803D;
+
+    border: 1px solid #BBF7D0;
+    border-radius: 8px;
+
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.success {
+    background-color: #ECFDF5;
+    color: #047857;
+    border-color: #A7F3D0;
+}
+
+.error {
+    background-color: #FEF2F2;
+    color: #B91C1C;
+    border-color: #FECACA;
+}

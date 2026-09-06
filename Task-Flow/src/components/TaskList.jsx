@@ -1,7 +1,9 @@
 import styles from './TaskList.module.css'
+import feedbackStyles from './Feedback.module.css'
 import TaskCard from "./TaskCard"
 function TaskList({
     tasks,
+    feedback,
     onToggleFavorite,
     onToggleChecked,
     onEditTask,
@@ -17,15 +19,22 @@ function TaskList({
                 tasks.length === 0
                     ? <p className={styles.no_tasks}>Ainda sem tarefas</p>
                     : <ul className={styles.task_list}>
+                        {feedback && feedback.target === "taskList" && (
+                            <p className={`${feedbackStyles.feedback} ${feedbackStyles[feedback.type]}`}>
+                                {feedback.message}
+                            </p>
+                        )}
                         {
                             tasks.map(task => (
                                 <TaskCard
                                     key={task.id}
                                     task={task}
+                                    feedback={feedback}
                                     onToggleFavorite={onToggleFavorite}
                                     onToggleChecked={onToggleChecked}
                                     onEditTask={onEditTask}
                                     onDeleteTask={onDeleteTask}
+
                                 />
                             ))
                         }

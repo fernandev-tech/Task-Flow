@@ -1,7 +1,11 @@
 import styles from './TaskCard.module.css'
 import { EditIcon, DeleteIcon } from './TaskIcons'
+import feedbackStyles from './Feedback.module.css'
+
+
 function TaskCard({
     task,
+    feedback,
     onToggleFavorite,
     onToggleChecked,
     onEditTask,
@@ -62,7 +66,15 @@ function TaskCard({
                         Eliminar</button>
                 </div>
             </li>
+            {feedback &&
+                feedback.target === "taskCard" &&
+                feedback.taskId === task.id && (
+                    <p className={feedbackStyles.feedback}>
+                        {feedback.message}
+                    </p>
+                )}
 
+            {/*Se existe feedback E o ID da tarefa do feedback é igual ao ID desta tarefa, mostra a mensagem.*/}
             {/*task_header: cabeçalho da tarefa - Título + favorite.*/}
         </>
     )
