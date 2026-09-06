@@ -624,3 +624,19 @@ editingDescription
 3. Usei renderização para para apresentar diferentes icones.
 2. Adicionei ícones nos botões cancelar, adicionar e salvar.
 
+
+# Sobre Áreas de visualização
+
+O activeList é o estado que representa ou guarda a visão/ lista selecionada.
+
+TasksToShow é a variável que apresenta as tarefas que estão a ser visualisadas
+
+Se `activeList` for `"all"`, o que acontece com `tasksToShow`? Apresenta tasks.
+
+
+
+tasks = todos os livros da biblioteca
+tasksToShow = os livros que decidiste colocar na mesa
+map() = pega cada livro que está na mesa e coloca uma representação dele na tela
+
+Se escolheres "Todos", colocas todos na mesa.

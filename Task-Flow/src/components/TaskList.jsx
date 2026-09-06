@@ -2,7 +2,12 @@ import styles from './TaskList.module.css'
 import feedbackStyles from './Feedback.module.css'
 import TaskCard from "./TaskCard"
 function TaskList({
+    tasksToShow,
     tasks,
+    activeList,
+    setActiveList,
+    totalTasks,
+    totalFavoritesTasks,
     feedback,
     onToggleFavorite,
     onToggleChecked,
@@ -16,7 +21,7 @@ function TaskList({
     return (
         <>
             {
-                tasks.length === 0
+                tasksToShow.length === 0
                     ? <p className={styles.no_tasks}>Ainda sem tarefas</p>
                     : <ul className={styles.task_list}>
                         {feedback && feedback.target === "taskList" && (
@@ -24,8 +29,30 @@ function TaskList({
                                 {feedback.message}
                             </p>
                         )}
+                        <div className={styles.ListNavegation}>
+
+
+                            <button
+                                className={`${styles.list_button} ${activeList === "all" ? styles.list_button_active : ""
+                                    }`}
+                                type="button"
+                                onClick={() => {
+
+                                    setActiveList("all")
+                                }}>Todas ({totalTasks})</button>
+
+                            <button className={`${styles.list_button} ${activeList === "all" ? styles.list_button_active : ""
+                                }`}
+                                type="button"
+                                onClick={() => {
+                                    setActiveList("favorites")
+
+
+                                }}>Favoritas ({totalFavoritesTasks})</button>
+                        </div>
+
                         {
-                            tasks.map(task => (
+                            tasksToShow.map(task => (
                                 <TaskCard
                                     key={task.id}
                                     task={task}

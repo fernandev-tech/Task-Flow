@@ -28,6 +28,18 @@ function App() {
 
   const [editingTaskId, setEditingTaskId] = useState(null) /*o null representa a ausência de valor. Quer dizer que o estado começa com um valor nulo*/
 
+  /*Este estado representa a visão selecionada.*/
+  const [activeList, setActiveList] = useState("all")
+
+  const tasksToShow = activeList === "all" ? tasks : tasks.filter(task => task.favorite === true)
+
+  const totalTasks = tasks.length
+
+  const totalFavoritesTasks = tasks.filter(task => task.favorite === true).length
+
+
+
+
   /*Estado do feedback ao adicionar tarefa*/
   const [feedback, setFeedback] = useState(null)
 
@@ -221,7 +233,12 @@ porque essa será a tarefa que acabou de ser criada pelo formulário.*/
           {/*Aqui estou a passar uma função como prop. Porque o TaskForm precisa de uma maneira de dizer ao App: "Terminei de criar uma tarefa. Aqui está ela."*/}
 
           <TaskList
+            tasksToShow={tasksToShow}
             tasks={tasks}
+            activeList={activeList}
+            setActiveList={setActiveList}
+            totalTasks={totalTasks}
+            totalFavoritesTasks={totalFavoritesTasks}
             feedback={feedback}
             onToggleFavorite={toggleFavorite}
             onToggleChecked={toggleChecked}
