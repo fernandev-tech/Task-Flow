@@ -22,42 +22,52 @@ function TaskList({
     return (
         <>
             {
-                tasksToShow.length === 0
-                    ? <p className={styles.no_tasks}>Ainda sem tarefas</p>
-                    : <ul className={styles.task_list}>
-                        {feedback && feedback.target === "taskList" && (
-                            <p className={`${feedbackStyles.feedback} ${feedbackStyles[feedback.type]}`}>
-                                {feedback.message}
-                            </p>
-                        )}
-                        <div className={styles.list_navigation}>
+                <ul className={styles.task_list}>
+                    {feedback && feedback.target === "taskList" && (
+                        <p className={`${feedbackStyles.feedback} ${feedbackStyles[feedback.type]}`}>
+                            {feedback.message}
+                        </p>
+                    )}
 
-                            <button
-                                type="button"
-                                className={`${styles.list_button} ${activeList === "all"
-                                    ? styles.list_button_active
-                                    : ""
-                                    }`}
-                                onClick={() => {
-                                    setActiveList("all")
-                                }}>Todas ({totalTasks})
-                            </button>
+                    <div className={styles.list_navigation}>
 
-                            <button
-                                type="button"
-                                className={`${styles.list_button} ${activeList === "favorites"
-                                    ? styles.list_button_active
-                                    : ""
-                                    }`}
-                                onClick={() => {
-                                    setActiveList("favorites")
-                                }}>Favoritas ({totalFavoritesTasks})
-                            </button>
-                        </div>
-                        <div className={`${styles.list_view} ${styles[animationDirection]}`}>
+                        <button
+                            type="button"
+                            className={`${styles.list_button} ${activeList === "all"
+                                ? styles.list_button_active
+                                : ""
+                                }`}
+                            onClick={() => {
+                                setActiveList("all")
+                            }}>Todas ({totalTasks})
+                        </button>
 
-                            {
-                                tasksToShow.map(task => (
+                        <button
+                            type="button"
+                            className={`${styles.list_button} ${activeList === "favorites"
+                                ? styles.list_button_active
+                                : ""
+                                }`}
+                            onClick={() => {
+                                setActiveList("favorites")
+                            }}>Favoritas ({totalFavoritesTasks})
+                        </button>
+                    </div>
+                    <div className={`${styles.list_view} ${styles[animationDirection]}`}>
+
+                        {
+                            tasksToShow.length === 0
+                                ? (
+                                    <div className={styles.no_tasks}>
+                                        {
+                                            activeList === "all"
+                                                ? "Ainda sem tarefas"
+                                                : "Ainda sem tarefas favoritas!"
+
+                                        }
+                                    </div>
+                                )
+                                : tasksToShow.map(task => (
                                     <TaskCard
                                         key={task.id}
                                         task={task}
@@ -70,9 +80,9 @@ function TaskList({
                                     />
 
                                 ))
-                            }
-                        </div>
-                    </ul>
+                        }
+                    </div>
+                </ul>
             }
         </>
 

@@ -8,9 +8,10 @@
 
 .no_tasks {
     text-align: center;
-    margin-top: 30px;
+    margin: 30px;
     font-weight: bold;
     font-size: 18px;
+    padding: 24px;
 }
 
 .list_navigation {
