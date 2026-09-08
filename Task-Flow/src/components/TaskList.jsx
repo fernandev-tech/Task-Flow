@@ -5,6 +5,7 @@ function TaskList({
     tasksToShow,
     tasks,
     activeList,
+    animationDirection,
     setActiveList,
     totalTasks,
     totalFavoritesTasks,
@@ -29,42 +30,48 @@ function TaskList({
                                 {feedback.message}
                             </p>
                         )}
-                        <div className={styles.ListNavegation}>
-
+                        <div className={styles.list_navigation}>
 
                             <button
-                                className={`${styles.list_button} ${activeList === "all" ? styles.list_button_active : ""
+                                type="button"
+                                className={`${styles.list_button} ${activeList === "all"
+                                    ? styles.list_button_active
+                                    : ""
                                     }`}
-                                type="button"
                                 onClick={() => {
-
                                     setActiveList("all")
-                                }}>Todas ({totalTasks})</button>
+                                }}>Todas ({totalTasks})
+                            </button>
 
-                            <button className={`${styles.list_button} ${activeList === "all" ? styles.list_button_active : ""
-                                }`}
+                            <button
                                 type="button"
+                                className={`${styles.list_button} ${activeList === "favorites"
+                                    ? styles.list_button_active
+                                    : ""
+                                    }`}
                                 onClick={() => {
                                     setActiveList("favorites")
-
-
-                                }}>Favoritas ({totalFavoritesTasks})</button>
+                                }}>Favoritas ({totalFavoritesTasks})
+                            </button>
                         </div>
+                        <div className={`${styles.list_view} ${styles[animationDirection]}`}>
 
-                        {
-                            tasksToShow.map(task => (
-                                <TaskCard
-                                    key={task.id}
-                                    task={task}
-                                    feedback={feedback}
-                                    onToggleFavorite={onToggleFavorite}
-                                    onToggleChecked={onToggleChecked}
-                                    onEditTask={onEditTask}
-                                    onDeleteTask={onDeleteTask}
+                            {
+                                tasksToShow.map(task => (
+                                    <TaskCard
+                                        key={task.id}
+                                        task={task}
+                                        feedback={feedback}
+                                        onToggleFavorite={onToggleFavorite}
+                                        onToggleChecked={onToggleChecked}
+                                        onEditTask={onEditTask}
+                                        onDeleteTask={onDeleteTask}
 
-                                />
-                            ))
-                        }
+                                    />
+
+                                ))
+                            }
+                        </div>
                     </ul>
             }
         </>

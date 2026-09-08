@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useRef, useEffect, useState } from 'react'
 import Header from './components/Header'
 import TaskForm from './components/TaskForm'
 import TaskList from './components/TaskList'
@@ -26,6 +26,7 @@ function App() {
     localStorage.setItem("tasks", JSON.stringify(tasks)) /*"Sempre que tasks mudar, transforma o array de tarefas em JSON e guarda-o no localStorage."*/
   }, [tasks])
 
+
   const [editingTaskId, setEditingTaskId] = useState(null) /*o null representa a ausência de valor. Quer dizer que o estado começa com um valor nulo*/
 
   /*Este estado representa a visão selecionada.*/
@@ -36,9 +37,6 @@ function App() {
   const totalTasks = tasks.length
 
   const totalFavoritesTasks = tasks.filter(task => task.favorite === true).length
-
-
-
 
   /*Estado do feedback ao adicionar tarefa*/
   const [feedback, setFeedback] = useState(null)
@@ -54,6 +52,18 @@ function App() {
       setFeedback(null)
     }, 3000)
   }
+
+  /*UseRef*/
+  const previousList = useRef("all")
+
+  useEffect(() => {
+    previousList.current = activeList
+  }, [activeList])
+
+  const animationDirection =
+    previousList.current === "all" && activeList === "favorites"
+      ? "slide-left"
+      : "slide-right"
 
   /*Adicionar nova tarefa*/
   function addTask(newTask) {
@@ -214,6 +224,7 @@ porque essa será a tarefa que acabou de ser criada pelo formulário.*/
 
   return (
     <>
+    
       <div className="container">
         <Header />
         <main>
@@ -236,6 +247,7 @@ porque essa será a tarefa que acabou de ser criada pelo formulário.*/
             tasksToShow={tasksToShow}
             tasks={tasks}
             activeList={activeList}
+            animationDirection={animationDirection}
             setActiveList={setActiveList}
             totalTasks={totalTasks}
             totalFavoritesTasks={totalFavoritesTasks}
@@ -250,7 +262,7 @@ porque essa será a tarefa que acabou de ser criada pelo formulário.*/
 
           {/*Passamos a função toggleFavorite como valor para a prop onToggleFavorite porque o TaskList é quem renderiza os TaskCard. Então o TaskList precisa receber a função para poder entregá-la ao TaskCard.*/}
         </main>
-      </div >
+      </div>
     </>
   )
 
