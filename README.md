@@ -50,20 +50,6 @@ A aplicação permitirá:
 
 ---
 
-# 📁 Estrutura da Documentação
-
-A pasta `docs/` contém toda a documentação técnica do projeto.
-
-| Documento | Descrição |
-|------------|-----------|
-| PROJECT_PLAN.md | Planeamento completo do projeto |
-| ARCHITECTURE.md | Arquitetura da aplicação |
-| DATA_PERSISTENCE.md | Persistência dos dados |
-| SPRINT_00.md | Documentação da Sprint 0 |
-
-
----
-
 # 📚 Objetivo de Aprendizagem
 
 Este projeto foi concebido para proporcionar uma experiência próxima da realidade de uma equipa de desenvolvimento.

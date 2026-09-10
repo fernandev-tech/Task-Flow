@@ -43,6 +43,7 @@ function TaskForm({ onAddTask, editingTask, saveEditingTask, cancelEditingTask }
         }
 
         const description = formData.get('description')
+        
         if (editingTask) {
             saveEditingTask(editingTask.id, editingTitle, editingDescription)
             event.target.reset() /*Reset do formulário*/

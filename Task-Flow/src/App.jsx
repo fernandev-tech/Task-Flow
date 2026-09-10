@@ -67,7 +67,8 @@ function App() {
 
   /*Adicionar nova tarefa*/
   function addTask(newTask) {
-    setTasks([...tasks, newTask]) /*Esta linha significa: "Pega nas tarefas que já tenho e cria uma nova lista acrescentando esta nova tarefa."*/
+    /*setTasks([...tasks, newTask]) /*Esta linha significa: "Pega nas tarefas que já tenho e cria uma nova lista acrescentando esta nova tarefa."*/
+    setTasks([newTask, ...tasks])
     showFeedback("success", "Tarefa adicionada!", "form")
 
   }
